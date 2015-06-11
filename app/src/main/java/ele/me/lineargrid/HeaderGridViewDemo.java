@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +49,9 @@ public class HeaderGridViewDemo extends Activity {
         });
         gridView.setAdapter(adapter);
 
-        setContentView(gridView);
+        ScrollView scrollView = new ScrollView(this);
+        scrollView.addView(gridView);
+        setContentView(scrollView);
     }
 
     private GroupAdapter adapter = new GroupAdapter() {
@@ -99,24 +102,16 @@ public class HeaderGridViewDemo extends Activity {
     private List<Category> fakeData() {
         List<Category> list = new ArrayList<>();
 
-        Category category1 = new Category(6, "Header 0");
-        List<Item> items1 = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            Item item = new Item("item " + i);
-            items1.add(item);
+        for (int i = 0; i < 5; i++) {
+            Category category = new Category(6, "Header " + i);
+            List<Item> items = new ArrayList<>();
+            for (int j = 0; j < 8; j++) {
+                Item item = new Item("item " + j);
+                items.add(item);
+            }
+            category.setItems(items);
+            list.add(category);
         }
-        category1.setItems(items1);
-
-        Category category2 = new Category(3, "Header 1");
-        List<Item> items2 = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            Item item = new Item("item " + i);
-            items2.add(item);
-        }
-        category2.setItems(items2);
-
-        list.add(category1);
-        list.add(category2);
         return list;
     }
 

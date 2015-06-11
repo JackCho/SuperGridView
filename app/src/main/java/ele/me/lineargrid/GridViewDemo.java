@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,9 +50,10 @@ public class GridViewDemo extends Activity {
             }
         });
 
-
-        layout.addView(gridView);
         layout.addView(button);
+        ScrollView scrollView = new ScrollView(this);
+        scrollView.addView(gridView);
+        layout.addView(scrollView);
         setContentView(layout);
     }
 
